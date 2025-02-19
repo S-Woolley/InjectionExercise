@@ -1,0 +1,35 @@
+﻿@page "/tickets"
+@attribute [StreamRendering]
+@inject DataAccess DataAccess;
+@using System.Threading.Tasks
+
+<PageTitle>Tickets</PageTitle>
+
+<h1>Tickets</h1>
+
+<div class="input-group mb-3">
+    <input @bind="searchTerm" type="text" class="form-control" placeholder="Enter search term..." />
+</div>
+<div>
+    <button class="btn btn-primary" @onclick="PerformSearch">Search</button>
+</div>
+@if (searchResults != null)
+{
+    <ul>
+        @foreach (var result in searchResults)
+        {
+            <li>@result</li>
+        }
+    </ul>
+}
+
+@code {
+    private string searchTerm = string.Empty ;
+    private List<string> searchResults = [];
+
+    private async Task PerformSearch()
+    {
+        searchResults = await DataAccess.GetArtistsAsync(searchTerm);
+        StateHasChanged();
+    }
+}

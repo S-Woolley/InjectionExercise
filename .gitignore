@@ -398,3 +398,12 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
+
+# Ignore generated files in wwwroot
+*/wwwroot/lib/
+*/wwwroot/dist/
+
+# Include custom static files in wwwroot
+!wwwroot/css/
+!wwwroot/js/
+!wwwroot/images/
