@@ -10,7 +10,6 @@ services:
     ports:
       - "5432:5432"
     volumes:
-      #- postgres_data:/var/lib/postgresql/data
       - ./database:/docker-entrypoint-initdb.d
 
   web:
@@ -25,7 +24,3 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ConnectionStrings__DefaultConnection=Host=postgres_db;Port=5432;Database=injection_exercise;Username=myuser;Password=mypassword
-
-
-#volumes:
- # postgres_data:
